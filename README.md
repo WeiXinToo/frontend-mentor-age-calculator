@@ -1,190 +1,109 @@
-# Gulp & BrowserSync - SASS Compiler
+# Frontend Mentor - Age calculator app solution
 
-## check version of node and npm
-- node -v: check for node version
-- npm -v: check for nodejs package manager (npm) version
+This is a solution to the [Age calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/age-calculator-app-dF9DFFpj-Q). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Installing gulp (2 part)
-1.  install gulp command line interface (cli)
-npm install gulp-cli -g
-- -g means installing globally, allowing us to use gulp command from the command line in any directory of our pc.
+## Table of contents
+
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
 
-2.  create package.json file
-npm init -y
-- -y means answering yes to all the default questions
+## Overview
 
-3. install packages
-npm install --save-dev gulp gulp-sass gulp-postcss cssnano gulp-terser browser-sync
+### The challenge
 
-4. create gulpfile.js and write the following codes and save.
+Users should be able to:
 
-```js
-// VARIABLES
-const {src, dest, watch, series, parallel} = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const concat = require('gulp-concat');
-const replace = require('gulp-replace');
-const terser = require('gulp-terser');
-const browserSync = require('browser-sync').create();
+- View an age in years, months, and days after submitting a valid date through the form
+- Receive validation errors if:
+  - Any field is empty when the form is submitted
+  - The day number is not between 1-31
+  - The month number is not between 1-12
+  - The year is in the future
+  - The date is invalid e.g. 31/04/1991 (there are 30 days in April)
+- View the optimal layout for the interface depending on their device's screen size
+- See hover and focus states for all interactive elements on the page
+- **Bonus**: See the age numbers animate to their final number when the form is submitted
 
-// FILE PATHS
-const files = {
-  scssSource: 'src/scss/**/*.scss',
-  jsSource:'src/js/**/*.js',
-  destination: 'dist',
-  compiledCssDest: 'dist/style.css',
-  minifiedCssDest: 'dist/minified_version/'
-}
+### Screenshot
 
-/* || SASS Task
-- split into two functions:
-1. compile into css
-2. add vendor prefixes and minify css
+![width: 375px](./screenshots/375px.png)
+![width: 1440px](./screenshots/1440px.png)
+
+
+
+### Links
+
+- Solution URL: ()
+- Live Site URL: ()
+
+## My process
+
+### Built with
+
+- Semantic HTML5 markup
+- CSS
+- SASS
+- JavaScript
+- Mobile-first workflow
+
+
+
+### What I learned
+
+This is my first project in Frontend Mentor and I started to put my learning from various sources into practice and started to make sense of frustrating css concept like width, height, flex and so much more. Here are some of the takeaways from this project:
+
+1. I learn to analyse design and plan how I would write my html code and css before jumping right into the project and it indeed saves me a lot of time. 
+2. I learn to use semantic html tags instead of divs that is very confusing if we have too much of it.
+3. I learn to use variable in css so that I can reuse some of my code, and it makes maintenance so much easier. For example, multiple places need the same color.
+4. I learn how to play with width and height property, position - absolute, and layout like flexbox in css.
+
+
+```scss
+/*Import modules
+// avoid @import, use @use or both @forward and @use combined.
+1. In scss partial, create _index.html - the purpose is to collect every modules in the folder, and send them out as a single file (instead of multiple files, which is troublesome).
+2. write @forward codes in it.
+  - use can rename namespace with any name
+  - or use * to take away the namespace completely (so we don't need to specify module name in order to access codes inside it.).
+3. write @use codes in other files.
 */
-function scssCompiler(){
-  // 1. where is our scss source?
-  return src(files.scssSource, {sourcemaps: true})
-  // 2. pass source through compiler
-  .pipe(sass().on('error', sass.logError))
-  // 3. add vendor prefixes
-  .pipe(postcss([autoprefixer('last 2 versions')]))
-  // 4. where is our destination?
-  .pipe(dest(files.destination, {sourcemaps: '.'}))
-  // 5. inject changes without refreshing the page, keep scroll position intact and never take you back to top.
-  .pipe(browserSync.stream());
-}
 
-function scssMinify(){
-  // 1. where is the compiled version of css?
-  return src(files.compiledCssDest, {sourcemaps: true})
-  // 2. minify compiled css
-  .pipe(postcss([cssnano()]))
-  // 3. where is the destination?
-  .pipe(dest(files.minifiedCssDest));
-}
+@forward 'abstracts/fonts';
+@forward 'abstracts/colors';
 
-
-/* || JavaScript Task*/
-function jsTerser(){
-  // 1. where is the js source?
-  return src(files.jsSource, {sourcemaps: true})
-  // 2. concatenate all js into one file called all.js
-  .pipe(concat('all.js'))
-  // 3. minify js
-  .pipe(terser())
-  // 4. where is the destination?
-  .pipe(dest(files.destination, {sourcemaps: '.'}));
-}
-
-/* || Cachebusting Task
-- prevent browser from caching old files, not loading the latest files.
-- adding query string (?xxx=...) to force browser to reload the most recent version of a file every time.
-*/
-// 1. initiate a variable with current time as value
-const cbString = new Date().getTime();
-function cacheBusting() {
-  // 2. where is the html source?
-  return src(['index.html'])
-  // 3. replace value of query string (...?cb=...)
-  .pipe(replace(/cb=\d+/g, 'cb=' + cbString))
-  // 4. where is the destination?
-  .pipe(dest('.')
-  );
-}
-
-/* || Browser Sync Task
-- set up server
-- reload sever
-
-*/
-function browserSyncServer(cb) {
-  // 1. initialize server
-  browserSync.init({
-    server: {
-      baseDir: '.'
-    }
-  });
-  // 2. callback - signify completed.
-  cb();
-}
-
-function browserSyncReload(cb) {
-  // 1. reload server
-  browserSync.reload();
-  // 2. callback - signify completed.
-  cb();
-}
-
-/* || Watch Task
-watch for changes to files that match the globs and execute tasks when changes happen.
-*/
-function watchTask() {
-  // 1. watch html - run reload when changes happen.
-  watch('*.html', browserSyncReload);
-  // 2. watch scss and js - run reload when changes happen.
-  watch([files.scssSource, files.jsSource], series(scssCompiler, jsTerser, browserSyncReload));
-}
-
-
-
-/* || Gulp
-- type gulp in command line to run all the functions.
-- run tasks step by step.
-- parallel(task1, task2) = run in parallel
-
-*/
-exports.default = series(
-
-  parallel(scssCompiler, jsTerser),
-  scssMinify,
-  cacheBusting,
-  browserSyncServer,
-  watchTask,
-);
-
-
+@use 'abstracts' as *;
+@use 'abstracts' as *;
 ```
-5. enter 'gulp' in terminal to run.
+
+### Continued development
+
+My next step would be learning more css techniques like media queries, container queries that can make responsive web design easier. I also want to further consolidate my knowledge with position, transform, layout, animation by practising them during leisure time. Besides, I plan to start learning JavaScript and DOM Manipulation to make my future project interactive.
 
 
+### Useful resources
 
-## Note: Vulnerability issues with installed npm packages.
-### npm audit report to be resolved.
+- [Introduction To Responsive Web Design - HTML & CSS Tutorial](https://www.youtube.com/watch?v=srvUrASNj0s&t=489s) - This video further consolidates my understanding of responsive web design and other topics like width, max-width, and min-width to achieve desired styles I want.
+- [4 ways to deal with overflowing text](https://www.youtube.com/watch?v=6Nv0weHy7t0) - This video from Kevin Powell taught how to deal with annoying overflowing when styling webpage with css, I implemented one of the solution and it solved the issue and I am happy with that.
+- [Learn HTML – Full Tutorial for Beginners (2022)](https://www.youtube.com/watch?v=kUMe1FH4CHE) - This video made by Dave Gray and shared by FreeCodeCamp lets me understand basic html and learn semantic tags.
+- [CSS Tutorial – Full Course for Beginners](https://www.youtube.com/watch?v=OXGznpKZ_sA&t=32388s) - This video gets me started with all the basic css before starting this project.
+- [HTML & CSS Full Course - Beginner to Pro](https://www.youtube.com/watch?v=G3e-cpL7ofc&t=9727s) - This video combines both tutorials and project-based learning and helped me a lot with how html and css works. I grasped the concept of layout like grid and flexbox here. Very recommended due to his teaching appraoch.
 
-```cml
-glob-parent  <5.1.2
-Severity: high
-glob-parent vulnerable to Regular Expression Denial of Service in enclosure regex - https://
-fix available via `npm audit fix --force`
-Will install gulp@3.9.1, which is a breaking change
-node_modules/glob-stream/node_modules/glob-parent
-node_modules/glob-watcher/node_modules/glob-parent
-  chokidar  1.0.0-rc1 - 2.1.8
-  Depends on vulnerable versions of glob-parent
-  node_modules/glob-watcher/node_modules/chokidar
-    glob-watcher  3.0.0 - 5.0.5
-    Depends on vulnerable versions of chokidar
-    node_modules/glob-watcher
-  glob-stream  5.3.0 - 6.1.0
-  Depends on vulnerable versions of glob-parent
-  node_modules/glob-stream
-    vinyl-fs  2.4.2 - 3.0.3
-    Depends on vulnerable versions of glob-stream
-    node_modules/vinyl-fs
-      gulp  >=4.0.0
-      Depends on vulnerable versions of glob-watcher
-      Depends on vulnerable versions of vinyl-fs
-      node_modules/gulp
 
-6 high severity vulnerabilities
+## Author
+- Frontend Mentor - [@WeiXinToo](https://www.frontendmentor.io/profile/WeiXinToo)
 
-To address issues that do not require attention, run:
-  npm audit fix
+## Acknowledgments
 
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-```
+I would like to express my sincere gratitude towards two teacher from YouTube - Dave Gray, Kevin Powell, SuperSimpleDev, Web Dev Simplified and FreeCodeCamp for all the html and cs knowledge that makes this project possible.
+
+
