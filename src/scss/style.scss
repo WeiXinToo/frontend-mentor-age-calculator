@@ -1,6 +1,51 @@
-$BG-CLR: firebrick;
+@use './abstracts/variables' as v;
+@use './abstracts/mixins' as m;
 
+
+// RESET
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: v.$font-family;
+  /* font-weight: map-get($map: v.$font-weight, $key: "regular" ); */
+}
 
 body{
-  background-color: $BG-CLR;
+  height: 100vh;
+  background-color: v.$offwhite-neutral;
+  font-size: v.$input-font-size;
+  @include m.flex-col;
 }
+
+// Utility
+.offscreen {
+  position: absolute;
+  left: -100000px;
+}
+
+
+// General
+main {
+  margin: 0 auto;
+  padding: 1.2em 1em;
+  width: 80%;
+  min-width: 375px;
+  max-width: 500px;
+  background-color: v.$white-neutral;
+  border-radius: 40px 40px 100px 40px;
+  
+}
+
+fieldset {
+  border: none;
+}
+
+
+/* p {
+  font-weight: map-get($map: v.$font-weight, $key: "extrabold" );
+} */
+

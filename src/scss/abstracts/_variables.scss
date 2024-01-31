@@ -12,3 +12,8 @@ $offblack: hsl(0, 0%, 8%);
 // Fonts
 $input-font-size: 2rem;
 $font-family: 'Poppins', sans-serif;
+$font-weight: (
+  'regular': 400,
+  'bold': 700,
+  'extrabold': 800
+);

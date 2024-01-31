@@ -2,36 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="author" content="Too Wei Xin">
+  <meta name="description" content="Age Calculator Application">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Frontend Mentor | Age calculator app</title>
   <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
-  <link rel="stylesheet" href="dist/style.css?cb=1706585892572">
+  <link rel="stylesheet" href="dist/style.css?cb=1706709274428">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
 
 </head>
 <body>
-  <div><img src="assets/images/icon-arrow.svg" alt=""></div>
-  Day
-  DD
-
-  Month
-  MM
-
-  Year
-  YYYY
-
-  -- years
-  -- months
-  -- days
+  <main class="main">
+    <section class="main__input-section">
+      <form action="">
+        <fieldset>
+          <legend class="offscreen">Please enter your birth date. </legend>
+          <div>
+            <label for="day">DAY</label>
+            <input class="main__input" id="day" type="number" title="Must be a valid day" required autocomplete="on" autofocus min="1" max="31">
+          </div>
+          <div>
+            <label for="month">MONTH</label>
+            <input class="main__input" id="month" type="number" title="Must be a valid month" required autocomplete="on" min="1" max="12">
+          </div>
+          <div>
+            <label for="year">YEAR</label>
+            <input class="main__input" id="year" type="number" title="Must be in the past" required autocomplete="on" min="" max="2024">
+          </div>
+        </fieldset>
+      </form>
+    </section>
+    <hr>
+    <section class="main__output-section">
+      <p><span class="js-year">--</span> years</p>
+      <p><span class="js-month">--</span> months</p>
+      <p><span class="js-day">--</span> days</p>
+    </section>
+    </label>
+    <button type="submit"><img src="assets/images/icon-arrow.svg" alt="arrow icon button"></button>
+    <!--   <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+  </main>
   
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-  <script src="dist/all.js?cb=1706585892572"></script>
+
+  
+
+  <script src="dist/all.js?cb=1706709274428"></script>
   
 </body>
 </html>
