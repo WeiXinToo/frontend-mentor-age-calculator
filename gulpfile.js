@@ -63,7 +63,7 @@ function browserSyncServer(callback) {
   browserSync.init({
     server: {
       baseDir: '.'
-    }
+    }, browser: ['chrome', 'firefox', 'msedge']
   });
   callback();
 }
