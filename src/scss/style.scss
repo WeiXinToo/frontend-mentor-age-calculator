@@ -34,7 +34,7 @@ main {
   padding: 2.5em 1.5em;
   width: 90%;
   min-width: 320px;
-  max-width: 550px;
+  max-width: 500px;
 
   background-color: v.$white-neutral;
   border-radius: 30px 30px 100px 30px;
@@ -81,7 +81,7 @@ input[type=text] {
 .main__button-container {
   position: relative;
   width: 100%;
-  min-height: 7.5rem;
+  min-height: 6.5rem;
   @include m.flexbox(column, center, center);
   
 }
