@@ -10,39 +10,44 @@
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
-  <link rel="stylesheet" href="dist/style.css?cb=1706752336057">
+  <link rel="stylesheet" href="dist/style.css?cb=1706753595362">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-
 </head>
+
 <body>
   <main class="main">
+    
     <section class="main__input-section">
-      <form action="">
-        <fieldset>
+      <form class="main__form" action="">
+        <fieldset class="main__fieldset">
           <legend class="offscreen">Please enter your birth date. </legend>
-          <div>
+          
+          <div class="main__input-container">
             <label for="day">DAY</label>
-            <input class="main__input" id="day" type="number" title="Must be a valid day" required autocomplete="on" autofocus min="1" max="31">
+            <input id="day" type="text" placeholder="DD" title="Must be a valid day" pattern="0?[0-9]|[1-2][0-9]|[3][0-1]" required autocomplete="on" autofocus>
           </div>
-          <div>
+
+          <div class="main__input-container">
             <label for="month">MONTH</label>
-            <input class="main__input" id="month" type="number" title="Must be a valid month" required autocomplete="on" min="1" max="12">
+            <input id="month" type="text" placeholder="MM" title="Must be a valid month" pattern="0?[1-9]|1[0-2]" required autocomplete="on">
           </div>
-          <div>
+
+          <div class="main__input-container">
             <label for="year">YEAR</label>
-            <input class="main__input" id="year" type="number" title="Must be in the past" required autocomplete="on" min="" max="2024">
+            <input id="year" type="text" placeholder="YYYY" title="Must be in the past" required autocomplete="on" >
           </div>
         </fieldset>
       </form>
+      <div class="main__button-container">
+        <hr>
+        <button class="button button-transform" type="submit" ontouchstart=""><img src="assets/images/icon-arrow.svg" alt="arrow icon button" width="46" height="44"></button>
+      </div>
     </section>
-    <hr>
     <section class="main__output-section">
       <p><span class="js-year">--</span> years</p>
       <p><span class="js-month">--</span> months</p>
       <p><span class="js-day">--</span> days</p>
     </section>
-    </label>
-    <button type="submit"><img src="assets/images/icon-arrow.svg" alt="arrow icon button"></button>
     <!--   <div class="attribution">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
       Coded by <a href="#">Your Name Here</a>.
@@ -52,7 +57,7 @@
 
   
 
-  <script src="dist/all.js?cb=1706752336057"></script>
+  <script src="dist/all.js?cb=1706753595362"></script>
   
 </body>
 </html>

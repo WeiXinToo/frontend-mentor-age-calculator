@@ -61,9 +61,8 @@ function cacheBusting() {
 // Browsersync Task
 function browserSyncServer(callback) {
   browserSync.init({
-    server: {
-      baseDir: '.'
-    }, browser: ['chrome', 'firefox', 'msedge']
+    server: {baseDir: '.'}, 
+    browser: ['chrome', 'firefox', 'msedge'],
   });
   callback();
 }

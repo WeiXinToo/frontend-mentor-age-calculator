@@ -1,12 +1,13 @@
-@mixin flex-col {
+@mixin flexbox ($direction, $justify, $align, $gap: null) {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
 }
 
-@mixin flex-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@mixin media {
+  @media screen and (min-width: 480px){
+    right: -2rem;
+  }
 }
