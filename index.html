@@ -10,7 +10,7 @@
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
-  <link rel="stylesheet" href="dist/style.css?cb=1706753595362">
+  <link rel="stylesheet" href="dist/style.css?cb=1706865603926">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
 </head>
 
@@ -24,29 +24,32 @@
           
           <div class="main__input-container">
             <label for="day">DAY</label>
-            <input id="day" type="text" placeholder="DD" title="Must be a valid day" pattern="0?[0-9]|[1-2][0-9]|[3][0-1]" required autocomplete="on" autofocus>
+            <input class="js-day-input" id="day" type="text" placeholder="DD" title="Must be a valid day" pattern="0?[0-9]|[1-2][0-9]|[3][0-1]" required autocomplete="on" autofocus>
+            <div class="error js-error">This field is required.</div>
           </div>
 
           <div class="main__input-container">
             <label for="month">MONTH</label>
-            <input id="month" type="text" placeholder="MM" title="Must be a valid month" pattern="0?[1-9]|1[0-2]" required autocomplete="on">
+            <input class="js-month-input" id="month" type="text" placeholder="MM" title="Must be a valid month" pattern="0?[1-9]|1[0-2]" required autocomplete="on">
+            <div class="error js-error">This field is required.</div>
           </div>
 
           <div class="main__input-container">
             <label for="year">YEAR</label>
-            <input id="year" type="text" placeholder="YYYY" title="Must be in the past" required autocomplete="on" >
+            <input class="js-year-input" id="year" type="text" placeholder="YYYY" title="Must be in the past" required autocomplete="on">
+            <div class=" error js-error">This field is required.</div>
           </div>
         </fieldset>
       </form>
       <div class="main__button-container">
         <hr>
-        <button class="button button-transform" type="submit" ontouchstart=""><img src="assets/images/icon-arrow.svg" alt="arrow icon button" width="46" height="44"></button>
+        <button class="button js-button" type="submit" ontouchstart=""><img src="assets/images/icon-arrow.svg" alt="arrow icon button" width="46" height="44"></button>
       </div>
     </section>
     <section class="main__output-section">
-      <p><span class="js-year">--</span> years</p>
-      <p><span class="js-month">--</span> months</p>
-      <p><span class="js-day">--</span> days</p>
+      <p><span class="js-year-output">--</span> years</p>
+      <p><span class="js-month-output">--</span> months</p>
+      <p><span class="js-day-output">--</span> days</p>
     </section>
     <!--   <div class="attribution">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
@@ -57,7 +60,7 @@
 
   
 
-  <script src="dist/all.js?cb=1706753595362"></script>
+  <script src="dist/all.js?cb=1706865603926"></script>
   
 </body>
 </html>

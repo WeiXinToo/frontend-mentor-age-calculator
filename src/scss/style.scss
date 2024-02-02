@@ -1,13 +1,17 @@
 @use './abstracts/variables' as v;
 @use './abstracts/mixins' as m;
 
+// CSS RESET
+@use './abstracts/reset';
 
-// RESET
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+// Utility
+.offscreen {
+  position: absolute;
+  left: -100000px;
 }
+
+// GENERAL
 
 html {
   font-family: v.$font-family;
@@ -16,18 +20,10 @@ html {
 body{
   height: 100vh;
   background-color: v.$offwhite-neutral;
-
   @include m.flexbox(column, center, center);
 }
 
-// Utility
-.offscreen {
-  position: absolute;
-  left: -100000px;
-}
-
-
-// GENERAL
+// MAIN
 
 main {
   margin: 0 auto;
@@ -40,7 +36,7 @@ main {
   border-radius: 30px 30px 100px 30px;
 }
 
-
+// SECTION 1
 .main__form {
   @include m.flexbox(column, center, flex-start);
   max-width: 320px;
@@ -62,6 +58,12 @@ fieldset {
   }
 }
 
+.error {
+  font-size: calc(0.2* v.$input-font-size);
+  font-style: italic;
+  display: none;
+}
+
 input[type=text] {
   width: 100%;
   max-width: 100px;
@@ -73,6 +75,7 @@ input[type=text] {
   font-weight: map-get($map: v.$font-weight, $key:"extrabold" );
 
 }
+
 
 ::placeholder {
   color: v.$smokey-grey;
@@ -94,9 +97,7 @@ hr {
 
 .button {
   position: absolute;
-  margin: 2rem ;
-  width: 3.5rem;
-  height: 3.5rem;
+  padding: 0.8em;
   background-color: v.$purple-primary;
   border: none;
   border-radius: 50%;
@@ -114,10 +115,11 @@ hr {
 }
 
 .button img {
-  width: 2rem;
+  width: 1.5rem;
   height: auto;
 }
 
+// SECTION 2
 .main__output-section p {
   font-weight: map-get($map: v.$font-weight, $key: 'extrabold');
   font-size: clamp(calc(1.5 * v.$input-font-size), 10vw ,calc(2 * v.$input-font-size));
