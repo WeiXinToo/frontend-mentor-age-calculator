@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap");
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.offscreen {
+  position: absolute;
+  left: -100000px;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  background-color: hsl(0, 0%, 94%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main {
+  margin: 0 auto;
+  padding: 2.5em 1.5em;
+  width: 85%;
+  min-width: 320px;
+  max-width: 500px;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 30px 30px 100px 30px;
+}
+
+.main__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  max-width: 320px;
+}
+
+fieldset {
+  position: relative;
+  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 1rem;
+}
+
+.main__input-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 0.4rem;
+}
+.main__input-container label {
+  font-size: 0.6rem;
+  letter-spacing: 0.15rem;
+  color: hsl(0, 1%, 44%);
+}
+
+.input {
+  outline: none;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0.8em;
+  border: 0.05rem solid hsl(0, 0%, 86%);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.input:focus {
+  border-color: hsl(259, 100%, 65%);
+}
+
+.input::-webkit-input-placeholder {
+  color: hsl(0, 1%, 44%);
+}
+
+.input::-moz-placeholder {
+  color: hsl(0, 1%, 44%);
+}
+
+.input:-ms-input-placeholder {
+  color: hsl(0, 1%, 44%);
+}
+
+.input::-ms-input-placeholder {
+  color: hsl(0, 1%, 44%);
+}
+
+.input::placeholder {
+  color: hsl(0, 1%, 44%);
+}
+
+::-moz-selection {
+  background-color: hsl(0, 0%, 86%);
+}
+
+::selection {
+  background-color: hsl(0, 0%, 86%);
+}
+
+.js-day-input-label-add,
+.js-month-input-label-add,
+.js-year-input-label-add {
+  color: hsl(0, 100%, 67%);
+}
+
+.js-day-input-add,
+.js-month-input-add,
+.js-year-input-add {
+  border-color: hsl(0, 100%, 67%);
+}
+
+.error {
+  font-size: 0.4rem;
+  font-style: italic;
+  color: hsl(0, 100%, 67%);
+}
+
+.main__button-container {
+  position: relative;
+  width: 97.5%;
+  min-height: 6.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+hr {
+  width: 100%;
+  border: 0.1rem solid hsl(0, 0%, 86%);
+}
+
+.button {
+  position: absolute;
+  padding: 1.35em;
+  background-color: hsl(259, 100%, 65%);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-transition: opacity 0.15s;
+  transition: opacity 0.15s;
+}
+@media screen and (min-width: 420px) {
+  .button {
+    right: 0rem;
+  }
+}
+
+.button:hover {
+  opacity: 0.95;
+}
+
+.button:active {
+  background-color: hsl(0, 0%, 8%);
+}
+
+.button img {
+  width: 25px;
+  height: auto;
+}
+
+.main__output-section p {
+  font-weight: 800;
+  font-size: clamp(3rem, 10vw, 4rem);
+  font-style: italic;
+  line-height: 1;
+}
+
+.main__output-section span {
+  color: hsl(259, 100%, 65%);
+}
+/*# sourceMappingURL=style.css.map */

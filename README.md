@@ -36,8 +36,9 @@ Users should be able to:
 
 ### Screenshot
 
-![width: 375px](./screenshots/375px.png)
-![width: 1440px](./screenshots/1440px.png)
+![fullscreen](assets\images\fullscreen.png)
+![mobile](assets\images\mobile.jpeg)
+
 
 
 
@@ -53,21 +54,29 @@ Users should be able to:
 - Semantic HTML5 markup
 - CSS
 - SASS
-- JavaScript
+- JavaScript - DOM Manipulation & Form Validation
 - Mobile-first workflow
 
 
 
 ### What I learned
+Age Calculator is my second project in Frontend Mentor. I guess this is my second time trying to build something from the ground up with JavaScript, together with HTML and CSS. Throughout the journey, my key takeaway is:
+1. how to do custom form validation using JavaScript instead of HTML built-in attributes.
+2. how to do DOM Manipulation using JavaScript - add class for styling using classList.add and classList.remove.
+3. how to work with SASS and set up sass compiler with gulp.
+4. gaining understanding working with HTML input element.
+5. problem solving by decomposing bigger problems into tiny manageable chunks.
 
 
 ### Continued development
-
+- Adding testing framework.
+- Adjust style to match my preferences.
+- continue exploring SASS/
+- continue exploring JavaScript and Js Framework.
 
 ### Useful resources
-
-- [Providing custom error messages for built-in HTML5 form validation](https://angelika.me/2020/02/01/custom-error-messages-for-html5-form-validation/) - 
-
+- [Client-side form validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) - I read through this MDN guide on client-side form validation and gain inspiration on how to tackle issues.
+- [ChatGPT](Chat.openai.com) - a good debugging tools - although it is not 100% accurate, it did provide me with some inspiration to tackle an issue from another perspectives, learning to leverage the power of AI increasing my efficiency. 
 
 ## Author
 - Frontend Mentor - [@WeiXinToo](https://www.frontendmentor.io/profile/WeiXinToo)
