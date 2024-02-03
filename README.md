@@ -36,8 +36,8 @@ Users should be able to:
 
 ### Screenshot
 
-![fullscreen](assets\images\fullscreen.png)
-![mobile](assets\images\mobile.jpeg)
+![fullscreen](./assets/images/fullscreen.png)
+![mobile](./assets/images/mobile.jpeg)
 
 
 
