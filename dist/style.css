@@ -106,6 +106,9 @@ fieldset {
   letter-spacing: 0.15rem;
   color: hsl(0, 1%, 44%);
 }
+.main__input-container .js-day-input-label-add, .main__input-container .js-month-input-label-add, .main__input-container .js-year-input-label-add {
+  color: hsl(0, 100%, 67%);
+}
 
 .input {
   outline: none;
@@ -149,12 +152,6 @@ fieldset {
 
 ::selection {
   background-color: hsl(0, 0%, 86%);
-}
-
-.js-day-input-label-add,
-.js-month-input-label-add,
-.js-year-input-label-add {
-  color: hsl(0, 100%, 67%);
 }
 
 .js-day-input-add,

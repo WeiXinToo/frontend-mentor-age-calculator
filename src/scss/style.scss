@@ -56,7 +56,15 @@ fieldset {
     letter-spacing: 0.15rem;
     color: v.$smokey-grey;
   }
+
+  & .js-day-input-label-add,
+  & .js-month-input-label-add,
+  & .js-year-input-label-add {
+    color: v.$light-red-primary;
+  } 
 }
+
+
 
 .input {
   outline: none;
@@ -81,11 +89,7 @@ fieldset {
   background-color: v.$light-grey;
 }
 
-.js-day-input-label-add,
-.js-month-input-label-add,
-.js-year-input-label-add {
-  color: v.$light-red-primary;
-} 
+
 
 .js-day-input-add,
 .js-month-input-add,
