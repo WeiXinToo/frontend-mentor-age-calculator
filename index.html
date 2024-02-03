@@ -10,7 +10,7 @@
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
-  <link rel="stylesheet" href="dist/style.css?cb=1706865603926">
+  <link rel="stylesheet" href="dist/style.css?cb=1706955918025">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
 </head>
 
@@ -18,32 +18,33 @@
   <main class="main">
     
     <section class="main__input-section">
-      <form class="main__form" action="">
+      <form id="input-form" class="main__form js-form" action="/">
         <fieldset class="main__fieldset">
           <legend class="offscreen">Please enter your birth date. </legend>
           
           <div class="main__input-container">
-            <label for="day">DAY</label>
-            <input class="js-day-input" id="day" type="text" placeholder="DD" title="Must be a valid day" pattern="0?[0-9]|[1-2][0-9]|[3][0-1]" required autocomplete="on" autofocus>
-            <div class="error js-error">This field is required.</div>
+            <label class="js-day-input-label" for="day">DAY</label>
+            <input class="input js-day-input" id="day" name="day" type="text" placeholder="DD" autocomplete="on">
+            <div class="error js-error-day"></div>
           </div>
 
           <div class="main__input-container">
-            <label for="month">MONTH</label>
-            <input class="js-month-input" id="month" type="text" placeholder="MM" title="Must be a valid month" pattern="0?[1-9]|1[0-2]" required autocomplete="on">
-            <div class="error js-error">This field is required.</div>
+            <label class="js-month-input-label" for="month">MONTH</label>
+            <input class="input js-month-input" id="month" name="month" type="text" placeholder="MM" title="Must be a valid month" autocomplete="on">
+            <div class="error js-error-month"></div>
           </div>
 
           <div class="main__input-container">
-            <label for="year">YEAR</label>
-            <input class="js-year-input" id="year" type="text" placeholder="YYYY" title="Must be in the past" required autocomplete="on">
-            <div class=" error js-error">This field is required.</div>
+            <label class="js-year-input-label" for="year">YEAR</label>
+            <input class="input js-year-input" id="year" name="year" type="text" placeholder="YYYY" title="Must be in the past" autocomplete="on">
+            <div class="error js-error-year"></div>
           </div>
         </fieldset>
+        
       </form>
       <div class="main__button-container">
         <hr>
-        <button class="button js-button" type="submit" ontouchstart=""><img src="assets/images/icon-arrow.svg" alt="arrow icon button" width="46" height="44"></button>
+        <button class="button" type="submit" ontouchstart="" form="input-form"><img src="assets/images/icon-arrow.svg" alt="arrow icon button" width="46" height="44"></button>
       </div>
     </section>
     <section class="main__output-section">
@@ -60,7 +61,7 @@
 
   
 
-  <script src="dist/all.js?cb=1706865603926"></script>
+  <script src="dist/all.js?cb=1706955918025"></script>
   
 </body>
 </html>

@@ -30,7 +30,7 @@ main {
   padding: 2.5em 1.5em;
   width: 90%;
   min-width: 320px;
-  max-width: 500px;
+  max-width: 480px;
 
   background-color: v.$white-neutral;
   border-radius: 30px 30px 100px 30px;
@@ -49,7 +49,8 @@ fieldset {
 }
 
 .main__input-container {
-  @include m.flexbox(column, center, flex-start, 0.3rem);
+  width: 100%;
+  @include m.flexbox(column, center, flex-start, 0.4rem);
 
   & label {
     font-size: calc(0.3* v.$input-font-size);
@@ -58,32 +59,52 @@ fieldset {
   }
 }
 
-.error {
-  font-size: calc(0.2* v.$input-font-size);
-  font-style: italic;
-  display: none;
-}
-
-input[type=text] {
+.input {
+  outline: none;
   width: 100%;
-  max-width: 100px;
   box-sizing: border-box;
   padding: 0.8em;
   border: 0.05rem solid v.$light-grey;
   border-radius: 0.5rem;
   font-size: calc(0.5* v.$input-font-size);
   font-weight: map-get($map: v.$font-weight, $key:"extrabold" );
-
 }
 
+.input:focus {
+  border-color: v.$purple-primary;
+}
 
-::placeholder {
+.input::placeholder {
   color: v.$smokey-grey;
 }
 
+::selection {
+  background-color: v.$light-grey;
+}
+
+.js-day-input-label-add,
+.js-month-input-label-add,
+.js-year-input-label-add {
+  color: v.$light-red-primary;
+} 
+
+.js-day-input-add,
+.js-month-input-add,
+.js-year-input-add {
+  border-color: v.$light-red-primary;
+}
+
+.error {
+  font-size: calc(0.2* v.$input-font-size);
+  font-style: italic;
+  color: v.$light-red-primary;
+}
+
+
+
 .main__button-container {
   position: relative;
-  width: 100%;
+  width: 97.5%;
   min-height: 6.5rem;
   @include m.flexbox(column, center, center);
   
@@ -97,7 +118,7 @@ hr {
 
 .button {
   position: absolute;
-  padding: 0.8em;
+  padding: 1.35em;
   background-color: v.$purple-primary;
   border: none;
   border-radius: 50%;
@@ -115,7 +136,7 @@ hr {
 }
 
 .button img {
-  width: 1.5rem;
+  width: 25px;
   height: auto;
 }
 

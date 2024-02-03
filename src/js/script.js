@@ -1,91 +1,142 @@
 "use strict";
 
-// AGE Calculator
-/*
-* validation logic and display error messages.
-* Animate changing text 
-*/
-
-
-/* Validation
-- Receive validation errors if:
-  - Any field is empty when the form is submitted
-  - The day number is not between 1-31
-  - The month number is not between 1-12
-  - The year is in the future
-  - The date is invalid e.g. 31/04/1991 (there are 30 days in April)
-*/
-
-// Date-related
+/* || Current Date*/
 const today = new Date();
-const currentDay = today.getUTCDate();
-const currentMonth = today.getUTCMonth(); // month is zero-indexed, starting from 0.
-const currentYear = today.getUTCFullYear();
+const currentDay = today.getDate();
+const currentMonth = today.getMonth(); // month is zero-indexed, starting from 0.
+const currentYear = today.getFullYear();
 
-// Elements
-const btn = document.querySelector('.js-button');
+/* || Element*/
+
+// Form
+const form = document.querySelector('.js-form');
+
+// Label
+const dayLabel = document.querySelector('.js-day-input-label');
+const monthLabel = document.querySelector('.js-month-input-label');
+const yearLabel = document.querySelector('.js-year-input-label');
+
+//Input
 const dayInput = document.querySelector('.js-day-input');
 const monthInput = document.querySelector('.js-month-input');
 const yearInput = document.querySelector('.js-year-input');
 
-const yrOutput = document.querySelector('.js-year-output');
-const mthOutput = document.querySelector('.js-month-output');
+//Error
+const dayError = document.querySelector('.js-error-day');
+const monthError = document.querySelector('.js-error-month');
+const yearError = document.querySelector('.js-error-year');
+
+// Output
+const yearOutput = document.querySelector('.js-year-output');
+const monthOutput = document.querySelector('.js-month-output');
 const dayOutput = document.querySelector('.js-day-output');
 
-// check empty
-function validate_empty(){
-  if (item.value === '' || item.value === null) {
-    return true
-  };
-}
+/* || Form Validation
+ValidateDay
+* param: day (dayInputValue - type: Number), birthDate (date object constructed using year, month & day inputValue in Number)
+* check empty input - where inputValue = Number("") => 0   
+* check input range between 1 & 31
+* check valid date (e.g., 2000-4-31 => false)
 
-// Form Validation
-function validate_day(day){
-  if (1 <= day <= 31){
+validateMonth
+* param: month (monthInputValue - type: Number)
+* check empty input - where inputValue = Number("") => 0
+* check input range between 1 & 12
+
+validateYear
+* param: year (yearInputValue - type: Number)
+* check empty input - where inputValue = Number("") => 0
+* check year < 1900 & year > current year
+
+*/
+
+// Day
+function validateDay(day, birthDate){
+  if (day === 0) {
+    dayError.textContent = 'this field is required';
+    dayInput.classList.add('js-day-input-add');
+    dayLabel.classList.add('js-day-input-label-add');
+    return false;
+  }
+
+  if (birthDate.getDate() <= 0 || birthDate.getDate() > 31 || birthDate.getDate() !== day){
+    dayError.textContent = 'must be a valid day';
+    dayInput.classList.add('js-day-input-add');
+    dayLabel.classList.add('js-day-input-label-add');
+    return false;
+  } else {
+    dayError.textContent = '';
+    dayInput.classList.remove('js-day-input-add');
+    dayLabel.classList.remove('js-day-input-label-add');
     return true;
   }
-}
-
-function validate_month(month){
-  if (1 <= month <= 12){
-    return true;
-  }
-}
-function validate_year(year, today){
-  if (year <= today) {
-    return true;
-  }
-}
-
-
-
-// Get days according to month
-function getDaysInMonth(yr, mth, currentMonth, validateLeapYear) {
-  const daysInMonthArray = [31, 28, 31 ,30, 31, 30, 31, 31, 30, 31, 30, 31];
   
-  console.log("Before leap year check:", daysInMonthArray[1]);
-  console.log(currentMonth);
-
-  if (validateLeapYear(yr)) {
-    daysInMonthArray[1] = 29;
-  };
-  console.log("After leap year check:", daysInMonthArray[1]);
-
-  // deal with negative index issue - when current month - birth_month
-  // mth - refer to the month displayed on screen
-  if (mth === 0) {
-    return daysInMonthArray[0];
-  }
-  // return days of previous month (current month - 1)
-  return daysInMonthArray[currentMonth - 1];
- 
 }
 
+// Month
+function validateMonth(month){
+  if (month === 0) {
+    monthError.textContent = 'this field is required';
+    monthInput.classList.add('js-month-input-add');
+    monthLabel.classList.add('js-month-input-label-add');
+    return false;
+  }
+  if (month <= 0 || month > 12){
+    monthError.textContent = 'must be a valid month';
+    monthInput.classList.add('js-month-input-add');
+    monthLabel.classList.add('js-month-input-label-add');
+    return false;
+  } else {
+    monthError.textContent = '';
+    monthInput.classList.remove('js-month-input-add');
+    monthLabel.classList.remove('js-month-input-label-add');
+    return true;
+  }
+}
+
+// Year
+function validateYear(year){
+  
+  if (year === 0) {
+    yearError.textContent = 'this field is required';
+    yearInput.classList.add('js-year-input-add');
+    yearLabel.classList.add('js-year-input-label-add');
+    return false;
+  }
+  // note: use birthDate.getFullyear is not reliable - inputYear < 100 bypass the validation!
+  if (year < 1900 || year > today.getFullYear()) {
+    yearError.textContent = 'must be in the past';
+    yearInput.classList.add('js-year-input-add');
+    yearLabel.classList.add('js-year-input-label-add');
+    return false;
+  } else {
+    yearError.textContent = '';
+    yearInput.classList.remove('js-year-input-add');
+    yearLabel.classList.remove('js-year-input-label-add');
+    return true;
+  }
+}
+
+/* || Utilities
+
+validateLeapYear
+* param: yearInputValue - type: Number
+* Creates an Date object to check leap year.
+* If Date object.getDate() is 29, it is leap year => true.
+* In case where it's not a leap year, Date object will autocorrect to March 1, and dateObject.getDate() is not 29 => false.
+
+getDaysInMonth
+* param: yearInputValue - type: Number, monthDifference - type: Number, validateLeapYear - type: function
+* Borrows days based on month before the current month for calculation purposes.
+* uses validateLeapYear function to check leap year and change default Feb days to 29 if it is.
+* Special case when monthDifference is 0 - when there is no previous month to borrow from, set the number of days to be 31 (similar to Jan).
+
+
+*/
 
 // Check leap year  
-function validateLeapYear(inputYear) {
-  // Check if Feb of each year has 29 days
-  const leapYear = new Date(inputYear, 1, 29).getDate() === 29;
+function validateLeapYear(yearInputValue) {
+  const leapYear = new Date(yearInputValue, 1, 29).getDate() === 29;
   if (leapYear) {
     return true;
   }
@@ -94,47 +145,69 @@ function validateLeapYear(inputYear) {
   }
 }
 
+
+function getDaysInMonth(yearInputValue, monthDifference, validateLeapYear) {
+
+  const daysInMonthArray = [31, 28, 31 ,30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  if (validateLeapYear(yearInputValue)) {
+    daysInMonthArray[1] = 29;
+  };
+  // deal with negative index issue - when current month - birth_month
+  // mth - refer to the month displayed on screen
+  if (monthDifference === 0) {
+    return daysInMonthArray[0];
+  }
+  return daysInMonthArray[currentMonth - 1];
+ 
+}
+
+
 // Click button
-btn.addEventListener('click', ()=>{
+form.addEventListener('submit', (e)=>{
+  // cancel form default behaviours, preventing it from submitting a form
+  e.preventDefault();
+
+  const yearInputValue = Number(yearInput.value.trim());
+  const monthInputValue = Number(monthInput.value.trim());
+  const dayInputValue = Number(dayInput.value.trim());
+  const birthDate = new Date(yearInputValue, monthInputValue -1, dayInputValue);
+
+  const validateDayResult =  validateDay(dayInputValue, birthDate);
+  const validateMonthResult = validateMonth(monthInputValue);
+  const validateYearResult = validateYear(yearInputValue, today);
+
+  // validate date - early return to stop calculation
+  if (!validateDayResult || !validateMonthResult || !validateYearResult) {
+    return;
+  } 
   
-  const inputYear = Number(yearInput.value);
-  const inputMonth = Number(monthInput.value);
-  const inputDay = Number(dayInput.value);
-  
-  // data values to be displayed
-  let yr = currentYear - inputYear;
-  let mth = (currentMonth + 1) - inputMonth; // current month is zero indexed, add one to make it as regular month we know
-  let day = currentDay - inputDay;
+  // difference - values to be displayed
+  let yearDifference = currentYear - yearInputValue;
+  let monthDifference = (currentMonth + 1) - monthInputValue; // current month is zero indexed, add one to make it as regular month we know
+  let dayDifference = currentDay - dayInputValue;
 
   // when month is less than and equal to 0
-  if (mth <= 0) {
-    yr -= 1;
-    mth += 12;
+  if (monthDifference <= 0) {
+    yearDifference -= 1;
+    monthDifference += 12;
   }
   // when day is less than 0
-  if (day < 0) {
-    mth -= 1;
-    day += getDaysInMonth(inputYear, mth, currentMonth, validateLeapYear);
+  if (dayDifference < 0) {
+    monthDifference -= 1;
+    dayDifference += getDaysInMonth(yearInputValue, monthDifference, validateLeapYear);
   }
 
   // when month is more than equal to 12
-  if (mth >=12) {
-    yr += 1;
-    mth -= 12;
-  }
-
-  // verify leap year - on console.
-  if (validateLeapYear(inputYear)){
-    console.log(`${inputYear} is a leap year!`);
-  } else {
-    console.log(`${inputYear} is not a leap year!`);
+  if (monthDifference >=12) {
+    yearDifference += 1;
+    monthDifference -= 12;
   }
 
   // DOM modification
-  yrOutput.textContent = yr; 
-  mthOutput.textContent = mth;
-  dayOutput.textContent = day;
-
-  })
+  yearOutput.textContent = yearDifference; 
+  monthOutput.textContent = monthDifference;
+  dayOutput.textContent = dayDifference;
+});
 
  
