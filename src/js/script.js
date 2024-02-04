@@ -136,13 +136,7 @@ getDaysInMonth
 
 // Check leap year  
 function validateLeapYear(yearInputValue) {
-  const leapYear = new Date(yearInputValue, 1, 29).getDate() === 29;
-  if (leapYear) {
-    return true;
-  }
-  else {
-    return false;
-  }
+  return new Date(yearInputValue, 1, 29).getDate() === 29;
 }
 
 
@@ -150,9 +144,14 @@ function getDaysInMonth(yearInputValue, monthDifference, validateLeapYear) {
 
   const daysInMonthArray = [31, 28, 31 ,30, 31, 30, 31, 31, 30, 31, 30, 31];
 
+  console.log(`Before: ${daysInMonthArray[1]}`); //  checking
+  
   if (validateLeapYear(yearInputValue)) {
     daysInMonthArray[1] = 29;
-  };
+  } 
+  ;
+  console.log(`After: ${daysInMonthArray[1]}`); // checking
+
   // deal with negative index issue - when current month - birth_month
   // mth - refer to the month displayed on screen
   if (monthDifference === 0) {
@@ -162,6 +161,7 @@ function getDaysInMonth(yearInputValue, monthDifference, validateLeapYear) {
  
 }
 
+/* console.log(getDaysInMonth(2000, 2, validateLeapYear)); */
 
 // Click button
 form.addEventListener('submit', (e)=>{
@@ -172,15 +172,18 @@ form.addEventListener('submit', (e)=>{
   const monthInputValue = Number(monthInput.value.trim());
   const dayInputValue = Number(dayInput.value.trim());
   const birthDate = new Date(yearInputValue, monthInputValue -1, dayInputValue);
-
+  
   const validateDayResult =  validateDay(dayInputValue, birthDate);
   const validateMonthResult = validateMonth(monthInputValue);
   const validateYearResult = validateYear(yearInputValue, today);
+ 
+  
 
   // validate date - early return to stop calculation
   if (!validateDayResult || !validateMonthResult || !validateYearResult) {
     return;
   } 
+  console.log(`Leap year: ${validateLeapYear(yearInputValue)}`); // checking
   
   // difference - values to be displayed
   let yearDifference = currentYear - yearInputValue;
